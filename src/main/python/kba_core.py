@@ -61,7 +61,7 @@ def init_file_handles(thread_pool_id):
 			'w'),
 		outlinks_file_handle = open(
 			os.path.join(
-				KBA_DEFAULT_OUTPUT_DIR
+				KBA_DEFAULT_OUTPUT_DIR,
 				KBA_OUTLINKS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt'
 			), 
 			'w')
