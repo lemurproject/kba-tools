@@ -29,6 +29,7 @@ from kba import ttypes
 
 
 THREAD_POOL_SIZE = 4  # 10 threads ensures that Bhiksha won't kill the job
+KBA_DEFAULT_OUTPUT_DIR = '/home/spalakod/workhorse3'
 KBA_BLOGS_LIST_FILENAME_BASE = 'kba_blogs_list'
 KBA_FORUMS_LIST_FILENAME_BASE = 'kba_forums_list'
 KBA_OUTLINKS_LIST_FILENAME_BASE = 'kba_outlinks_list'
@@ -46,9 +47,24 @@ def init_file_handles(thread_pool_id):
 		verbose = False
 	)
 	return ThreadFileHandles(
-		forums_file_handle = open(KBA_FORUMS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt', 'w'),
-		blogs_file_handle = open(KBA_BLOGS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt', 'w'),
-		outlinks_file_handle = open(KBA_OUTLINKS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt', 'w')
+		forums_file_handle = open(
+			os.path.join(
+				KBA_DEFAULT_OUTPUT_DIR,
+			 	KBA_FORUMS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt'
+			 ), 
+			'w'),
+		blogs_file_handle = open(
+			os.path.join(
+				KBA_DEFAULT_OUTPUT_DIR,
+				KBA_BLOGS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt'
+			), 
+			'w'),
+		outlinks_file_handle = open(
+			os.path.join(
+				KBA_DEFAULT_OUTPUT_DIR
+				KBA_OUTLINKS_LIST_FILENAME_BASE + '_' + str(thread_pool_id) + '.txt'
+			), 
+			'w')
 	)
 
 def handle_kba_stream_file(kba_stream_file):
