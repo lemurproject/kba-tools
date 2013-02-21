@@ -51,6 +51,9 @@ def handle_gzip_kba_social_file(gzip_file, output_directory):
 		except EOFError:
 			break
 
+		except:
+			continue
+
 	forum_home_urls_handle.close()
 	blog_home_urls_handle.close()
 	#permalinks_handle.close()
