@@ -72,4 +72,4 @@ if __name__ == '__main__':
 
 	with open(parsed.gzip_files_list, 'r') as gzip_files_handle:
 		for gzip_filename in gzip_files_handle:
-			handle_gzip_kba_social_file(gzip_filename, parsed.output_directory)
+			handle_gzip_kba_social_file(gzip_filename.strip(), parsed.output_directory)
