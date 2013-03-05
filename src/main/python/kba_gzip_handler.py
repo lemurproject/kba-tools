@@ -62,8 +62,8 @@ if __name__ == '__main__':
 	def parse_cmdline_args():
 		parser = argparse.ArgumentParser()
 
-		parser.add_argument('gzip_files_list', metavar = 'gzip-filename', help = 'Name of gzipped KBA file')
-		parser.add_argument('output_directory', metavar = 'output-directory', help = 'Directory to place the generated file')
+		parser.add_argument('gzip_files_list', metavar = 'gzip-files-list', help = 'Name of gzipped KBA file')
+		parser.add_argument('--output-directory', dest = 'output_directory', help = 'Directory to place the generated file')
 		parser.add_argument('--dump-home-urls', action = 'store_true', dest = 'dump_home_urls', default = False)
 
 		return parser.parse_args()
