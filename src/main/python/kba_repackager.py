@@ -29,7 +29,7 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 	os.mkdir(output_dir)
 
 	for i, social_set in enumerate(social_splits):
-		file_list_handle = open(os.path.join(output_dir, 'social_' + str(i)))
+		file_list_handle = open(os.path.join(output_dir, 'social_' + str(i) + '.txt'), 'w+')
 
 		for social_file in social_set:
 			file_list_handle.write(social_file[0] + '\n')
@@ -37,7 +37,7 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 		file_list_handle.close()
 
 	for i, news_set in enumerate(news_splits):
-		file_list_handle = open(os.path.join(output_dir, 'news_' + str(i)))
+		file_list_handle = open(os.path.join(output_dir, 'news_' + str(i) + '.txt'), 'w+')
 
 		for news_file in news_set:
 			file_list_handle.write(news_file[0] + '\n')
@@ -45,7 +45,7 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 		file_list_handle.close()
 
 	for i, linking_set in enumerate(linking_splits):
-		file_list_handle = open(os.path.join(output_dir, 'linking_' + str(i)))
+		file_list_handle = open(os.path.join(output_dir, 'linking_' + str(i) + '.txt'), 'w+')
 
 		for linking_file in linking_set:
 			file_list_handle.write(linking_file[0] + '\n')
