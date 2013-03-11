@@ -40,14 +40,7 @@ def handle_gzip_kba_social_file(gzip_file, output_directory):
 	while True:
 		stream_item = ttypes.StreamItem()
 		try:
-			stream_item.read(protocol)
-			metadata = json.loads(stream_item.source_metadata)
-			if metadata['feed_class'] == 'Forum' and metadata['language'] == 'English':
-				#print stream_item
-				forum_home_urls_handle.write(metadata['home_link'] + '\n')
-
-			elif metadata['feed_class'] == 'Blog' and metadata['language'] == 'English':
-				blog_home_urls_handle.write(metadata['home_link'] + '\n')
+			yield stream_item
 
 		except EOFError:
 			break
