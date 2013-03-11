@@ -37,7 +37,9 @@ def one_gig_split(file_names_sizes):
 		if sum(current_file_set) >= GIGABYTE_IN_BYTES:
 			file_sets.append(current_file_set)
 			current_file_set = []
-		current_file_set.append(filename)
+		current_file_set.append(filename, file_size)
+
+	return file_sets
 
 
 if __name__ == '__main__':
