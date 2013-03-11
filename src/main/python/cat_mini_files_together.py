@@ -28,7 +28,7 @@ if __name__ == '__main__':
 			for new_line in f:
 				script += new_line.strip() + ' '
 
-			script += '> ' + os.path.join(result_dirname, fname) + '& \"'
+			script += '> ' + os.path.join(result_dirname, fname) + ' &\" &'
 			print script
 
 			f.close()
