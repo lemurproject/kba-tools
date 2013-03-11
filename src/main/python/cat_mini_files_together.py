@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
 	prefix_dirs = sys.argv[1]
 
-	for root, dirs, files in os.walk(dirs):
+	for root, dirs, files in os.walk(prefix_dirs):
 		for dirname in dirs:
 			result_dirname = os.path.join(OUTPUT_DIRECTORY, dirname)
 			os.mkdir(result_dirname)
@@ -33,4 +33,3 @@ if __name__ == '__main__':
 
 			f.close()
 
-	
