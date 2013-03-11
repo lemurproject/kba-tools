@@ -10,13 +10,17 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 	for root, dirs, files in os.walk(kba_data_location):
 		for filename in files:
 			if filename.endswith('.gz') and root.find(prefix_str) >= 0:
+				abs_path = os.path.abspath(os.path.join(root, filename))
 				if filename.find('social') >= 0:
-					files_to_cat['social'].append(os.path.abspath(os.path.join(root, filename)))
+					files_to_cat['social'].append(abs_path, os.path.getsize(abs_path))
 				elif filename.find('news') >= 0:
-					files_to_cat['news'].append(os.path.abspath(os.path.join(root, filename)))
+					files_to_cat['news'].append(abs_path, os.path.getsize(abs_path))
 				elif filename.find('linking') >= 0:
-					files_to_cat['linking'].append(os.path.abspath(os.path.join(root, filename)))
-	print files_to_cat
+					files_to_cat['linking'].append(abs_path, os.path.getsize(abs_path))
+	#print files_to_cat
+	print 'social: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['social'])
+	print 'news: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['news'])
+	print 'lining: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['linking'])
 
 if __name__ == '__main__':
 	def parse_cmdline_args():
