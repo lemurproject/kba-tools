@@ -23,15 +23,15 @@ sys.path.append('/bos/usr3/spalakod/kba-tools/src/main/python/gen-py')
 from kba import ttypes
 
 
-def handle_gzip_kba_social_file(gzip_file, output_directory):
+def handle_gzip_kba_social_file(gzip_file):
 	kba_stream = gzip.open(gzip_file)
 	#permalinks_filename = os.path.join(output_directory, os.path.splitext(gzip_file)[-1] + '.permalinks')
-	forum_home_urls_filename = os.path.join(output_directory, os.path.splitext(os.path.basename(gzip_file))[0] + '.forum_home_urls')
-	blog_home_urls_filename = os.path.join(output_directory, os.path.splitext(os.path.basename(gzip_file))[0] + '.blog_home_urls')
+	#forum_home_urls_filename = os.path.join(output_directory, os.path.splitext(os.path.basename(gzip_file))[0] + '.forum_home_urls')
+	#blog_home_urls_filename = os.path.join(output_directory, os.path.splitext(os.path.basename(gzip_file))[0] + '.blog_home_urls')
 
 	#permalinks_handle = open(permalinks_filename, 'w')
-	forum_home_urls_handle = open(forum_home_urls_filename, 'w+')
-	blog_home_urls_handle = open(blog_home_urls_filename, 'w+')
+	#forum_home_urls_handle = open(forum_home_urls_filename, 'w+')
+	#blog_home_urls_handle = open(blog_home_urls_filename, 'w+')
 
 	transport = StringIO(kba_stream.read())
 	transport.seek(0)
@@ -48,8 +48,8 @@ def handle_gzip_kba_social_file(gzip_file, output_directory):
 		except:
 			continue
 
-	forum_home_urls_handle.close()
-	blog_home_urls_handle.close()
+	#forum_home_urls_handle.close()
+	#blog_home_urls_handle.close()
 	#permalinks_handle.close()
 
 if __name__ == '__main__':
