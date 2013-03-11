@@ -25,11 +25,11 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 	news_splits = one_gig_split(files_to_cat['news'])
 	linking_splits = one_gig_split(files_to_cat['linking'])
 	
-	output_dir = os.path.join(output_dir, prefix_str)
-	os.mkdir(output_dir)
+	tmp_output_dir = os.path.join(output_dir, prefix_str)
+	os.mkdir(tmp_output_dir)
 
 	for i, social_set in enumerate(social_splits):
-		file_list_handle = open(os.path.join(output_dir, 'social_' + str(i) + '.txt'), 'w+')
+		file_list_handle = open(os.path.join(tmp_output_dir, 'social_' + str(i) + '.txt'), 'w+')
 
 		for social_file in social_set:
 			file_list_handle.write(social_file[0] + '\n')
@@ -37,7 +37,7 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 		file_list_handle.close()
 
 	for i, news_set in enumerate(news_splits):
-		file_list_handle = open(os.path.join(output_dir, 'news_' + str(i) + '.txt'), 'w+')
+		file_list_handle = open(os.path.join(tmp_output_dir, 'news_' + str(i) + '.txt'), 'w+')
 
 		for news_file in news_set:
 			file_list_handle.write(news_file[0] + '\n')
@@ -45,13 +45,12 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 		file_list_handle.close()
 
 	for i, linking_set in enumerate(linking_splits):
-		file_list_handle = open(os.path.join(output_dir, 'linking_' + str(i) + '.txt'), 'w+')
+		file_list_handle = open(os.path.join(tmp_output_dir, 'linking_' + str(i) + '.txt'), 'w+')
 
 		for linking_file in linking_set:
 			file_list_handle.write(linking_file[0] + '\n')
 
 		file_list_handle.close()
-
 
 def one_gig_split(file_names_sizes):
 	'''
@@ -67,7 +66,8 @@ def one_gig_split(file_names_sizes):
 			current_file_set = []
 		current_file_set.append((filename, file_size))
 
-	file_sets.append(current_file_set)
+	if current_file_set:
+		file_sets.append(current_file_set)
 
 	return file_sets
 
