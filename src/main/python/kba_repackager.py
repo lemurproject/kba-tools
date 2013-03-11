@@ -25,7 +25,8 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 	news_splits = one_gig_split(files_to_cat['news'])
 	linking_splits = one_gig_split(files_to_cat['linking'])
 	
-	output_dir = os.mkdir(os.path.join(output_dir, prefix_str))
+	output_dir = os.path.join(output_dir, prefix_str)
+	os.mkdir(output_dir)
 
 	for i, social_set in enumerate(social_splits):
 		file_list_handle = open(os.path.join(output_dir, 'social_' + str(i)))
