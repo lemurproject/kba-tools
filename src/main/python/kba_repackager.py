@@ -18,9 +18,9 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 				elif filename.find('linking') >= 0:
 					files_to_cat['linking'].append((abs_path, os.path.getsize(abs_path)))
 	#print files_to_cat
-	print 'social: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['social'])
-	print 'news: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['news'])
-	print 'lining: ' + reduce(lambda (x, y) : x[1] + y[1], files_to_cat['linking'])
+	print 'social: ' + reduce(lambda x, y : x[1] + y[1], files_to_cat['social'])
+	print 'news: ' + reduce(lambda x, y : x[1] + y[1], files_to_cat['news'])
+	print 'lining: ' + reduce(lambda x, y : x[1] + y[1], files_to_cat['linking'])
 
 if __name__ == '__main__':
 	def parse_cmdline_args():
