@@ -21,7 +21,7 @@ if __name__ == '__main__':
 			result_dirname = os.path.join(OUTPUT_DIRECTORY, os.path.basename(root))
 			fname = os.path.splitext(filename)[0] + '.gz'
 
-			f = open(filename, 'r')
+			f = open(os.path.join(root, filename), 'r')
 
 			script = 'cat '
 
