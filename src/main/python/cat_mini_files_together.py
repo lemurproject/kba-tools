@@ -23,12 +23,12 @@ if __name__ == '__main__':
 
 			f = open(os.path.join(root, filename), 'r')
 
-			script = 'cat '
+			script = 'condor_run \"cat '
 
 			for new_line in f:
 				script += new_line.strip() + ' '
 
-			script += '> ' + os.path.join(result_dirname, fname)
+			script += '> ' + os.path.join(result_dirname, fname) + '& \"'
 			print script
 
 			f.close()
