@@ -9,8 +9,7 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 	files_to_cat = { 'social' : [], 'news' : [], 'linking' : []}
 	for root, dirs, files in os.walk(kba_data_location):
 		for filename in files:
-			if filename.endswith('.gz') and root.find('prefix_str') >= 0:
-				print filename
+			if filename.endswith('.gz') and root.find(prefix_str) >= 0:
 				if filename.find('social') >= 0:
 					files_to_cat['social'].append(os.path.abspath(os.path.join(root, filename)))
 				elif filename.find('news') >= 0:
