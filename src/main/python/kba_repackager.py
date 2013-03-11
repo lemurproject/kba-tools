@@ -21,9 +21,36 @@ def handle_files(kba_data_location, prefix_str, output_dir):
 				elif filename.find('linking') >= 0:
 					files_to_cat['linking'].append((abs_path, os.path.getsize(abs_path)))
 	#print files_to_cat
-	print 'social: ' + str(one_gig_split(files_to_cat['social']))
-	print 'news: ' + str(sum([x[1] for x in files_to_cat['news']]))
-	print 'lining: ' + str(sum([x[1] for x in files_to_cat['linking']]))
+	social_splits = one_gig_split(files_to_cat['social'])
+	news_splits = one_gig_split(files_to_cat['news'])
+	linking_splits = one_gig_split(files_to_cat['linking'])
+	
+	output_dir = os.mkdir(os.path.join(output_dir, prefix_str))
+
+	for i, social_set in enumerate(social_splits):
+		file_list_handle = open(os.path.join(output_dir, 'social_' + str(i)))
+
+		for social_file in social_set:
+			file_list_handle.write(social_file[0] + '\n')
+
+		file_list_handle.close()
+
+	for i, news_set in enumerate(news_splits):
+		file_list_handle = open(os.path.join(output_dir, 'news_' + str(i)))
+
+		for news_file in news_set:
+			file_list_handle.write(news_file[0] + '\n')
+
+		file_list_handle.close()
+
+	for i, linking_set in enumerate(linking_splits):
+		file_list_handle = open(os.path.join(output_dir, 'linking_' + str(i)))
+
+		for linking_file in linking_set:
+			file_list_handle.write(linking_file[0] + '\n')
+
+		file_list_handle.close()
+
 
 def one_gig_split(file_names_sizes):
 	'''
