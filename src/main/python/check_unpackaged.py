@@ -5,20 +5,30 @@ import sys
 
 
 if __name__ == '__main':
-	files_list = sys.argv[1]
+	original_dataset_directory = sys.argv[1]
 
 	original_files = []
 	gzipped = []
 
-	with open(files_list, 'r') as files_list_handle:
-		for new_filename in files_list_handle:
-			new_filename = new_filename.strip()
+	for root, dirs, files in os.walk(original_dataset_directory):
 
-			if new_filename.find('.xz.gpg') >= 0:
-				original_files.append(new_filename.replace('.xz.gpg', ''))
+		for filename in files:
+			if filename.find('.xz.gpg.save') >= 0:
+				original_files.append(os.path.join(root, filename.replace('.xz.gpg.save', '')))
 
-			elif new_filename.find('.gz') >= 0:
-				original_files.append(new_filename.replace('.gz', ''))
+			elif filename.find('.xz.gpg') >= 0:
+				original_files.append(os.path.join(root, filename.replace('.xz.gpg', '')))
+
+			elif filename.find('.gz') >= 0:
+				gzipped.append(os.path.join(root, filename.replace('.gz', '')))
+
+		for filename in original_files:
+			if not filename in gzipped:
+				print filename
+
+		sys.stdout.flush()
+		original_files = []
+		gzipped = []
 
 	for fname in original_files:
 		if not fname in gzipped:
