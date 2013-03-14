@@ -4,7 +4,7 @@ import os
 import sys
 
 
-if __name__ == '__main':
+if __name__ == '__main__':
 	original_dataset_directory = sys.argv[1]
 
 	original_files = []
