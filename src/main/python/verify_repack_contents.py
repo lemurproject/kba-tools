@@ -41,3 +41,5 @@ if __name__ == '__main__':
 
 		for target, sources_list in target_source_map.iteritems():
 			verify(target, sources_list)
+
+	
