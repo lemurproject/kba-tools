@@ -17,7 +17,7 @@ def verify(target_file, sources):
 	target_file_kba_generator = kba_gzip_handler.handle_gzip_kba_file(target_file)
 
 	for source_file in sources:
-		for stream_object in kba_gzip_handler.handle_gzip_kba_file(source_file)
+		for stream_object in kba_gzip_handler.handle_gzip_kba_file(source_file):
 			target_stream_object = target_file_kba_generator.next()
 
 			if stream_object != target_stream_object:
