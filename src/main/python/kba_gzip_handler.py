@@ -23,7 +23,7 @@ sys.path.append('/bos/usr3/spalakod/kba-tools/src/main/python/gen-py')
 from kba import ttypes
 
 
-def handle_gzip_kba_social_file(gzip_file):
+def handle_gzip_kba_file(gzip_file):
 	kba_stream = gzip.open(gzip_file)
 	transport = StringIO(kba_stream.read())
 	transport.seek(0)
