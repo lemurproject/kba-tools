@@ -14,14 +14,14 @@ class KBASourcesError(Exception):
 
 def verify(target_file, sources):
 
-	target_file_kba_generator = kba_gzip_handler.handle_gzip_kba_social_file(target_file)
+	target_file_kba_generator = kba_gzip_handler.handle_gzip_kba_file(target_file)
 
 	for source_file in sources:
 		for stream_object in kba_gzip_handler.handle_gzip_kba_social_file(source_file):
 			target_stream_object = target_file_kba_generator.next()
 
 			if stream_object != target_stream_object:
-				raise KBASourcesError('Fuck up')
+				raise KBASourcesError('Fuck up: ' + target_file)
 
 	return True
 
@@ -40,6 +40,8 @@ if __name__ == '__main__':
 		target_source_map = json.load(kba_sources_file_handle)
 
 		for target, sources_list in target_source_map.iteritems():
-			verify(target, sources_list)
+			try:
+				verify(target, sources_list)
 
-	
+			except KBASourcesError as e:
+				print e
